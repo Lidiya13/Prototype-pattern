@@ -11,5 +11,5 @@ export abstract class Shape {
 
   abstract clone(): Shape;
 
-  abstract Area(): number;
+  abstract area(): number;
 }

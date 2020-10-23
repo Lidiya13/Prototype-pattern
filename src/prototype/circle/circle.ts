@@ -12,7 +12,7 @@ export class Circle extends Shape {
     return new Circle(this);
   }
 
-  Area(): number {
+  area(): number {
     return Math.PI * (this.radius ** 2);
   }
 }

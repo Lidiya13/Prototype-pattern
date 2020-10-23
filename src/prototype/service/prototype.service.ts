@@ -5,18 +5,19 @@ import { PrototypeDto } from '../dto/prototype.dto';
 
 @Injectable()
 export class PrototypeService {
-  constructor() {
-  }
 
   async calculateArea(source: PrototypeDto): Promise<number> {
     switch (source.type) {
       case 'circle': {
         const circle = new Circle(Circle.prototype);
-        return circle.Area();
+        circle.radius=source.radius;
+        return circle.area();
       }
       case 'rectangle': {
         const rectangle = new Rectangle(Rectangle.prototype);
-        return rectangle.Area();
+        rectangle.width=source.width;
+        rectangle.height=source.height;
+        return rectangle.area();
       }
     }
   }

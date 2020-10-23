@@ -14,7 +14,7 @@ export class Rectangle extends Shape {
     return new Rectangle(this);
   }
 
-  Area(): number {
+  area(): number {
     return this.width * this.height;
   }
 }
