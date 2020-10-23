@@ -1,5 +1,6 @@
-import { Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { PrototypeService } from '../service/prototype.service';
+import { PrototypeDto } from '../dto/prototype.dto';
 
 @Controller()
 export class PrototypeController {
@@ -8,8 +9,8 @@ export class PrototypeController {
   ) {
   }
 
-  @Post()
-  newShape() {
-
+  @Post('shape')
+  async newShape(@Body() prototypeDto: PrototypeDto): Promise<number> {
+    return await this.prototypeService.calculateArea(prototypeDto);
   }
 }
