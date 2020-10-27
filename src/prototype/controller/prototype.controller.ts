@@ -13,4 +13,6 @@ export class PrototypeController {
   async newShape(@Body() prototypeDto: PrototypeDto): Promise<number> {
     return await this.prototypeService.calculateArea(prototypeDto);
   }
+
+
 }

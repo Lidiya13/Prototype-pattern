@@ -1,36 +1,43 @@
-import { ShapePrototype } from '../shape/shape.prototype';
+import { ShapeParam, ShapePrototype } from '../shape/shape.prototype';
+
+interface CompositeParam extends ShapeParam {
+  radius: number;
+  width: number;
+  height: number;
+}
 
 export class ShapeComposite extends ShapePrototype {
+  radius: number;
+  width: number;
+  height: number;
   protected children: ShapePrototype[] = [];
+
+  constructor(source: CompositeParam) {
+    super(source);
+    this.radius = source.radius;
+    this.width = source.width;
+    this.height = source.height;
+  }
 
   public add(component: ShapePrototype): void {
     this.children.push(component);
-    component.setParent(this);
   }
 
   public remove(component: ShapePrototype): void {
     const componentIndex = this.children.indexOf(component);
     this.children.splice(componentIndex, 1);
-    component.setParent(null);
   }
 
   public isComposite(): boolean {
     return true;
   }
 
-  public operation(): string {
-    const result = [];
-    for (const child of this.children) {
-      result.push(child.operation());
-    }
-    return `(${result.join('+')})`;
-  }
-
   area(): number {
-    return 0;
+    const result = Math.PI * (this.radius ** 2) + this.width * this.height;
+    return result;
   }
 
   clone(): ShapePrototype {
-    return undefined;
+    return new ShapeComposite(this);
   }
 }
