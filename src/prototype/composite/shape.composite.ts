@@ -1,43 +1,47 @@
 import { ShapeParam, ShapePrototype } from '../shape/shape.prototype';
-
-interface CompositeParam extends ShapeParam {
-  radius: number;
-  width: number;
-  height: number;
-}
+import { shapeIsComposite } from '../guard/shape-is-composite';
 
 export class ShapeComposite extends ShapePrototype {
-  radius: number;
-  width: number;
-  height: number;
   protected children: ShapePrototype[] = [];
 
-  constructor(source: CompositeParam) {
+  constructor(source: ShapeParam) {
     super(source);
-    this.radius = source.radius;
-    this.width = source.width;
-    this.height = source.height;
   }
 
-  public add(component: ShapePrototype): void {
+  add(component: ShapePrototype): void {
     this.children.push(component);
   }
 
-  public remove(component: ShapePrototype): void {
+  remove(component: ShapePrototype): void {
     const componentIndex = this.children.indexOf(component);
     this.children.splice(componentIndex, 1);
   }
 
-  public isComposite(): boolean {
+  isComposite(): boolean {
     return true;
   }
 
   area(): number {
-    const result = Math.PI * (this.radius ** 2) + this.width * this.height;
-    return result;
+    return this.calculateArea(this.children);
   }
 
   clone(): ShapePrototype {
-    return new ShapeComposite(this);
+    return Object.create(this);
+  }
+
+  getChildren() {
+    return this.children;
+  }
+
+  private calculateArea(children: ShapePrototype[]): number {
+    let resultSum = 0;
+    for (let i = 0; i < children.length; i++) {
+      const item = children[i];
+      if (shapeIsComposite(item)) {
+        resultSum += this.calculateArea(item.getChildren());
+      }
+      resultSum += item.area();
+    }
+    return resultSum;
   }
 }

@@ -13,7 +13,7 @@ export class Circle extends ShapePrototype {
   }
 
   clone(): ShapePrototype {
-    return new Circle(this);
+    return Object.create(this);
   }
 
   area(): number {

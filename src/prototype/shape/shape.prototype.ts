@@ -1,7 +1,7 @@
 export interface ShapeParam {
   x: number;
   y: number;
-  color: string;
+  color?: string;
 }
 
 export abstract class ShapePrototype {

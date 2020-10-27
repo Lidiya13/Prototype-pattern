@@ -5,7 +5,7 @@ interface RectangleParam extends ShapeParam {
   height: number;
 }
 
-export class RectanglePrototype extends ShapePrototype {
+export class Rectangle extends ShapePrototype {
   width: number;
   height: number;
 
@@ -16,7 +16,7 @@ export class RectanglePrototype extends ShapePrototype {
   }
 
   clone(): ShapePrototype {
-    return new RectanglePrototype(this);
+    return Object.create(this);
   }
 
   area(): number {
