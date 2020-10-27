@@ -1,5 +1,5 @@
-export interface PrototypeInterface{
-  type: "circle" | "rectangle";
+export interface PrototypeInterface {
+  type: 'circle' | 'rectangle';
   radius?: number;
   width?: number;
   height?: number;

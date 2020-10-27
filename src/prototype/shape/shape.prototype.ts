@@ -5,8 +5,6 @@ export interface ShapeParam {
 }
 
 export abstract class ShapePrototype {
-  protected parent: ShapePrototype;
-
   x: number;
   y: number;
   color: string;

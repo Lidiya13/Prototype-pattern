@@ -4,4 +4,5 @@ import { PrototypeModule } from './prototype/prototype.module';
 @Module({
   imports: [PrototypeModule],
 })
-export class AppModule {}
+export class AppModule {
+}
