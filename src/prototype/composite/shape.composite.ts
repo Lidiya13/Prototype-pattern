@@ -39,8 +39,9 @@ export class ShapeComposite extends ShapePrototype {
       const item = children[i];
       if (shapeIsComposite(item)) {
         resultSum += this.calculateArea(item.getChildren());
+      } else {
+        resultSum += item.area();
       }
-      resultSum += item.area();
     }
     return resultSum;
   }
